@@ -1,0 +1,31 @@
+<!-- views/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>To-Do App</h1>
+    <form action="/add" method="post">
+        <input type="text" name="task" required>
+        <button type="submit">Add Task</button>
+    </form>
+    <ul id="taskList">
+        <% tasks.forEach((task, index) => { %>
+            <li onclick="deleteTask(<%= index %>)"><%= task %></li>
+        <% }); %>
+    </ul>
+
+    <script>
+        function deleteTask(index) {
+            if (confirm("Are you sure you want to delete this task?")) {
+                window.location.href = `/delete/${index}`;
+            }
+        }
+    </script>
+</body>
+</html>
